@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="connection-form">
+    <h1 class="subscribe">Inscription</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.firstname) }}
+        {{ form_row(registrationForm.lastname) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.RGPDConsent) }}
+
+        <button type="submit" class="btn btn-primary">Je m'inscris</button>
+    {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

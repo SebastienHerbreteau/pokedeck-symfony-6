@@ -1,0 +1,55 @@
+<header>
+	<div class="burger">
+		<div class="haut"></div>
+		<div class="centre"></div>
+		<div class="bas"></div>
+	</div>
+	<nav class="navigation">
+		<ul id="navigation">
+			<li>
+				<a href="{{ path('main')}}">
+					<img src="{{ asset('assets/img/other/titre.webp') }}" class="logo" alt="logo pokedeck">
+				</a>
+			</li>
+			<li>
+				<ul>
+					<li>
+						<a class="nav-link" href="{{ path('main')}}">Accueil</a>
+					</li>
+					<li>
+						<a class="nav-link" href="{{ path('pokedeck')}}">Pokedeck</a>
+					</li>
+					{% if app.user %}
+						<li>
+							<a class="nav-link" href="{{ path('app_compte')}}">Mon compte</a>
+						</li>
+						<li>
+							<a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+						</li>
+					{% else %}
+						<li>
+							<a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+						</li>
+						<li>
+							<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+						</li>
+					{% endif %}
+				</ul>
+			</li>
+			<li>
+				{% if app.user %}
+					<p class="welcome">Bonjour
+						{{ app.user.firstname }}</p>
+				{% endif %}
+			</li>
+		</ul>
+
+	</nav>
+	{% if app.user and app.user.isVerified == false %}
+		<div class="alert" role="alert"></div>
+		<div class="alert-message">
+		<img class="alert-icone" src="{{asset ('assets/img/other/warning.png')}}" alt="">
+			<strong>Votre compte n'est pas activé</strong></div>
+			{% endif %}
+			<div class="modal-alert"><div>
+		</header>
