@@ -29,11 +29,11 @@
 					{% if app.user.id == favoris.id %}
 	<!-- On affiche les résultats-->				
 						<div class="card" style="background-image: url('{{pokemon.background}}')">
-							<h3 class="idpoke">{{pokemon.id}}</h3>
-							<img class="imgPoke" src="{{pokemon.imgPokemon}}" alt="image de {{pokemon.name}}">
+							<p class="idpoke">{{pokemon.id}}</p>
+							<img class="imgPoke" data-id="{{pokemon.id}}"src="{{pokemon.imgPokemon}}" alt="image de {{pokemon.name}}">
 							<h2 class="name">{{pokemon.name}}</h2>
 							<a href="{{ path('remove_favoris_from_account', {id: pokemon.id})}}">
-								<img class="star" src="{{ asset('assets/img/other/yellow-star.png') }}" alt="pictogramme d'une étoile jaune">
+								<img class="star" data-fav="1" data-id="{{pokemon.id}}" src="{{ asset('assets/img/other/yellow-star.png') }}" alt="pictogramme d'une étoile jaune">
 							</a>
 						</div>
 					{% endif %}

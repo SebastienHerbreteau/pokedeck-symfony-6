@@ -52,9 +52,9 @@ let imgPokes = document.querySelectorAll(".imgPoke");
 
 
 imgPokes.forEach((imgPoke) => {
-  imgPoke.addEventListener("click", () => {
+  imgPoke.addEventListener("click", (event) => {
     modal.classList.add("modalActive");
-    let id = imgPoke.previousElementSibling.textContent;
+    let id = event.currentTarget.dataset.id;
     getPokemon(id);
 
     window.onclick = function (e) {
@@ -206,5 +206,60 @@ window.onclick = function (e) {
     modalAlert.innerHTML = `<img id="close-alert-advisor" src="assets/img/other/close.webp" alt="fermer">Un mail contenant un nouveau lien d'activation vient de vous être envoyé`;
   }
 };
+
+
+//-----------------------------AJOUT FAVORIS------------------------------------------------------------------------------------
+
+// Écouteur d'événement pour les clics sur les étoiles favoris
+let stars = document.querySelectorAll('.star');
+stars.forEach(star => {
+  star.addEventListener("click", (event) => {
+    const id = event.currentTarget.dataset.id; // Récupérer l'ID du Pokémon depuis l'attribut data-id de la classe "star"
+    const fav = event.currentTarget.dataset.fav; // Récupérer 1 sur favoris, 0 si non depuis l'attribut data-fav de la classe "star"
+    if (fav === "0") {
+      const url = `pokedeck/favoris/add/${id}`; // URL de la route Symfony
+      gererFav(url, "POST");
+      star.src = "/assets/img/other/yellow-star.png";
+      event.currentTarget.dataset.fav = "1";
+    } else{
+      const url = `pokedeck/favoris/remove/${id}`; // URL de la route Symfony
+      gererFav(url, "DELETE");
+      star.src = "/assets/img/other/star.png";
+      event.currentTarget.dataset.fav = "0";
+    }
+  });
+});
+
+
+  
+
+  //Fonction envoi de la requête avec fetch()
+  function gererFav(url, method){
+  fetch(url, {
+    method: method,
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'
+    }
+  })
+
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Une erreur s\'est produite lors de la requête AJAX.');
+    }
+  })
+
+  .then(data => {
+    // Traiter la réponse côté client, par exemple :
+    
+    console.log(data.response);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+    } 
+
+  
 
 

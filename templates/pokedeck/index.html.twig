@@ -7,27 +7,21 @@
 	<div class="container-cards">
 		{% for pokemon in pokemons %}
 			<div class="card" style="background-image: url('{{pokemon.background}}')">
-				<h3 class="idpoke">{{pokemon.id}}</h3>
-				<img class="imgPoke" src="{{pokemon.imgPokemon}}" alt="image de {{pokemon.name}}">
+				<p class="idpoke">{{pokemon.id}}</p>
+				<img class="imgPoke" data-id="{{pokemon.id}}" src="{{pokemon.imgPokemon}}" alt="image de {{pokemon.name}}">
 				{% if app.user %}
+					{% set isFavorite = false %}
 					{% for favoris in pokemon.favoris %}
-						{% if app.user.id == favoris.id %}
-							<a href="{{ path('remove_favoris', {id: pokemon.id})}}">
-								<img class="star" src="{{ asset('assets/img/other/yellow-star.png') }}" alt="pictogramme d'une étoile jaune">
-							</a>
-						{% else %}
-							<a href="{{ path('add_favoris', {id: pokemon.id})}}">
-								<img class="star" src="{{ asset('assets/img/other/star.png') }}" alt="pictogramme d'une étoile vide">
-							</a>
+						{% if favoris.id == app.user.id %}
+							{% set isFavorite = true %}
+							<img class="star" data-fav="1" data-id="{{pokemon.id}}" src="{{ asset('assets/img/other/yellow-star.png') }}" alt="pictogramme d'une étoile jaune">
 						{% endif %}
-					{% else %}
-						<a href="{{ path('add_favoris', {id: pokemon.id})}}">
-							<img class="star" src="{{ asset('assets/img/other/star.png') }}" alt="pictogramme d'une étoile vide">
-						</a>
 					{% endfor %}
-				{% else %}
-					<img class="star" src="{{ asset('assets/img/other/star.png') }}" alt="pictogramme d'une étoile vide">
+					{% if not isFavorite %}
+						<img class="star" data-fav="0" data-id="{{pokemon.id}}" src="{{ asset('assets/img/other/star.png') }}" alt="pictogramme d'une étoile vide">
+					{% endif %}
 				{% endif %}
+
 				<h2 class="name">{{pokemon.name}}</h2>
 			</div>
 		{% endfor %}

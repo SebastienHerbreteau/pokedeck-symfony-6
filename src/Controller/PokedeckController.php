@@ -35,7 +35,12 @@ class PokedeckController extends AbstractController
       $pokemon->addFavori($this->getUser());
       $entityManager->persist($pokemon);
       $entityManager->flush();
-      return $this->redirectToRoute('pokedeck'); 
+      
+      $message = "ok";
+      $json = json_encode($message);
+      $response = new Response($json);
+      $response->headers->set('Content-Type', 'application/json');
+      return $response;
     }
 
     #[Route('pokedeck/favoris/remove/{id}', name: 'remove_favoris')]
@@ -44,7 +49,12 @@ class PokedeckController extends AbstractController
       $pokemon->removeFavori($this->getUser());
       $entityManager->persist($pokemon);
       $entityManager->flush();
-      return $this->redirectToRoute('pokedeck'); 
+   
+      $message = "ok";
+      $json = json_encode($message);
+      $response = new Response($json);
+      $response->headers->set('Content-Type', 'application/json');
+      return $response;
     }
 
     #[Route('pokedeck/compte/favoris/remove/{id}', name: 'remove_favoris_from_account')]
