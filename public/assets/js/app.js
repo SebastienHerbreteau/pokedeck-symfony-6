@@ -1,5 +1,5 @@
 function getPokemon(id) {
-  fetch(`http://127.0.0.1:8000/pokedeck/${id}`)
+  fetch(`pokedeck/${id}`)
     .then((response) => response.json())
     .then((pokemon) => {
 
@@ -33,7 +33,7 @@ function getPokemon(id) {
               <div class="ff">Vitesse : ${pokemon.speed}</div><br>
     </div>
         </div>
-        <img class="imgPokeModal" id="ipm" src="assets/img/pokemons/${
+        <img class="imgPokeModal" src="assets/img/pokemons/${
           pokemon.id
         }.webp" alt="image de ${pokemon.name}">
         <h2 class="h2Modal">${pokemon.name}</h2>
@@ -87,7 +87,7 @@ function immunise(pokemon) {
   let recup = "";
   for (stat of stats) {
     if (stat[1] === "Immunisé") {
-      recupDamage = `<span><p>${stat[0]} : </p><p class="gold"> Immunisé</p></span>`;
+      recupDamage = `<span><p>${stat[0]} : </p><p class="gold"> &nbsp;Immunisé</p></span>`;
       recup += recupDamage;
     }
   }
@@ -99,7 +99,7 @@ function tresResistant(pokemon) {
   let recup = "";
   for (stat of stats) {
     if (stat[1] === "Très résistant") {
-      recupDamage = `<span><p>${stat[0]} : </p><p class="silver"> Très résistant</p></span>`;
+      recupDamage = `<span><p>${stat[0]} : </p><p class="silver">&nbsp;Très résistant</p></span>`;
       recup += recupDamage;
     }
   }
@@ -111,7 +111,7 @@ function resistant(pokemon) {
   let recup = "";
   for (stat of stats) {
     if (stat[1] === "Résistant") {
-      recupDamage = `<span><p>${stat[0]} : </p><p class="green"> Résistant</p></span>`;
+      recupDamage = `<span><p>${stat[0]} : </p><p class="green">&nbsp;Résistant</p></span>`;
       recup += recupDamage;
     }
   }
@@ -123,7 +123,7 @@ function vulnerable(pokemon) {
   let recup = "";
   for (stat of stats) {
     if (stat[1] === "Vulnérable") {
-      recupDamage = `<span><p>${stat[0]} : </p><p class="orange"> Vulnérable</p></span>`;
+      recupDamage = `<span><p>${stat[0]} : </p><p class="orange">&nbsp;Vulnérable</p></span>`;
       recup += recupDamage;
     }
   }
@@ -135,7 +135,7 @@ function tresVulnerable(pokemon) {
   let recup = "";
   for (stat of stats) {
     if (stat[1] === "Très vulnérable") {
-      recupDamage = `<span><p>${stat[0]} : </p><p class="rouge"> Très vulnérable</p></span>`;
+      recupDamage = `<span><p>${stat[0]} : </p><p class="rouge">&nbsp;Très vulnérable</p></span>`;
       recup += recupDamage;
     }
   }
@@ -147,7 +147,7 @@ function normal(pokemon) {
   let recup = "";
   for (stat of stats) {
     if (stat[1] === "neutral") {
-      recupDamage = `<span><p>${stat[0]} : </p><p class="blue"> Normal</p></span>`;
+      recupDamage = `<span><p>${stat[0]} : </p><p class="blue">&nbsp;Normal</p></span>`;
       recup += recupDamage;
     }
   }
@@ -241,7 +241,6 @@ stars.forEach(star => {
       'X-Requested-With': 'XMLHttpRequest'
     }
   })
-
   .then(response => {
     if (response.ok) {
       return response.json();
@@ -249,10 +248,7 @@ stars.forEach(star => {
       throw new Error('Une erreur s\'est produite lors de la requête AJAX.');
     }
   })
-
   .then(data => {
-    // Traiter la réponse côté client, par exemple :
-    
     console.log(data.response);
   })
   .catch(error => {

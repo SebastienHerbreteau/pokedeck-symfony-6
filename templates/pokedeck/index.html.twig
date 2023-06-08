@@ -6,22 +6,35 @@
 	<div class="modal"></div>
 	<div class="container-cards">
 		{% for pokemon in pokemons %}
+			<!-- Pour chaque pokémon-->
 			<div class="card" style="background-image: url('{{pokemon.background}}')">
 				<p class="idpoke">{{pokemon.id}}</p>
 				<img class="imgPoke" data-id="{{pokemon.id}}" src="{{pokemon.imgPokemon}}" alt="image de {{pokemon.name}}">
+				<div class="container-type">
+					{% if pokemon.imgType2 != "NULL" %}
+						<img class="type-one" src="{{pokemon.imgType2}}" alt="image de {{pokemon.name}}">
+					{% endif %}
+					<img class="type-two" src="{{pokemon.imgType1}}" alt="image de {{pokemon.name}}">
+
+				</div>
 				{% if app.user %}
+					<!-- Si l'utilisateur est connecté-->
 					{% set isFavorite = false %}
+					<!-- On initialise une varibalae "isfavorite" à "false"-->
 					{% for favoris in pokemon.favoris %}
+						<!-- Pour chaque favoris dans pokemon.favoris (paire d'id.user et id.pokémon)-->
 						{% if favoris.id == app.user.id %}
+							<!-- Si l'id.user dans favoris est égal à l'id du user connecté -->
 							{% set isFavorite = true %}
+							<!-- Si tous ces pokémons sont en fav (true) alors on attribue 1 à data-fav et l'image est yellow-star.png-->
 							<img class="star" data-fav="1" data-id="{{pokemon.id}}" src="{{ asset('assets/img/other/yellow-star.png') }}" alt="pictogramme d'une étoile jaune">
 						{% endif %}
 					{% endfor %}
 					{% if not isFavorite %}
+						<!-- Si tous ces pokémons ne sont pas en fav alors on attribue 0 à data-fav et l'image est star.png-->
 						<img class="star" data-fav="0" data-id="{{pokemon.id}}" src="{{ asset('assets/img/other/star.png') }}" alt="pictogramme d'une étoile vide">
 					{% endif %}
 				{% endif %}
-
 				<h2 class="name">{{pokemon.name}}</h2>
 			</div>
 		{% endfor %}

@@ -3,14 +3,12 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Nunito;
-  
 }
 
-body{
+body {
   background-color: bisque;
   overflow-x: hidden;
 }
-
 
 /* --------------------------------------------------HEADER------------------------------------------------------ */
 
@@ -48,19 +46,18 @@ nav {
   position: absolute;
   top: 0;
 }
-.nav-link:hover{
-  border-bottom:2px solid white;
+.nav-link:hover {
+  border-bottom: 2px solid white;
 }
 
-
-#navigation{
+#navigation {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.underline{
-  border-bottom:2px solid white;
+.underline {
+  border-bottom: 2px solid white;
 }
 
 .logo {
@@ -78,12 +75,12 @@ ul {
 }
 
 .welcome {
-  color:white;
+  color: white;
   text-decoration: none;
   font-size: 18px;
   margin-right: 100px;
 }
-.alert-message{
+.alert-message {
   background-color: white;
   color: black;
   width: 180px;
@@ -102,7 +99,7 @@ ul {
   box-shadow: 5px 5px 5px gray;
 }
 
-.alert-icone{
+.alert-icone {
   width: 40px;
 }
 
@@ -126,7 +123,7 @@ ul {
   display: flex;
 }
 
-#close-alert-advisor{
+#close-alert-advisor {
   width: 35px;
   top: 15px;
   position: absolute;
@@ -137,13 +134,13 @@ ul {
   cursor: pointer;
 }
 
-#activation-link{
+#activation-link {
   text-decoration: underline;
   cursor: pointer;
 }
 /* --------------------------------------------------CONNEXION------------------------------------------------------ */
 
-.connection-form{
+.connection-form {
   width: 300px;
   display: flex;
   flex-direction: column;
@@ -152,11 +149,11 @@ ul {
   margin-right: auto;
 }
 
-input:focus{
-  outline:4px solid #ed556433;
+input:focus {
+  outline: 4px solid #ed556433;
 }
 
-input{
+input {
   border: 1px solid rgb(199, 199, 199);
   border-radius: 3px;
   height: 25px;
@@ -165,12 +162,12 @@ input{
   margin-bottom: 10px;
 }
 
-.connect{
+.connect {
   text-align: center;
   margin-bottom: 50px;
 }
 
-.btn-primary{
+.btn-primary {
   background-color: #ed5564;
   border: none;
   margin-top: 15px;
@@ -186,28 +183,28 @@ input{
 
 /* --------------------------------------------------INSCRIPTION------------------------------------------------------ */
 
-.subscribe{
+.subscribe {
   text-align: center;
   margin-bottom: 50px;
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
 }
 
-form>div{
+form > div {
   display: flex;
   flex-direction: column;
 }
 
-form>div:nth-child(7){
+form > div:nth-child(7) {
   display: flex;
   flex-direction: row-reverse;
   gap: 10px;
 }
-#registration_form_RGPDConsent:focus{
-  outline:none;
+#registration_form_RGPDConsent:focus {
+  outline: none;
 }
 
 /*----------------------------------------------POKEDECK/COMPTE---------------------------------------------------------*/
@@ -259,7 +256,7 @@ form>div:nth-child(7){
 }
 
 .imgPoke {
-cursor: pointer;
+  cursor: pointer;
   width: 80%;
 }
 
@@ -270,7 +267,7 @@ cursor: pointer;
   font-size: 16px;
 }
 
-.star{
+.star {
   width: 20px;
   position: absolute;
   top: 15px;
@@ -278,15 +275,24 @@ cursor: pointer;
   cursor: pointer;
 }
 
+.container-type {
+  display: flex;
+}
+
+.type-one,
+.type-two {
+  width: 40px;
+  filter: drop-shadow(1px 1px 1px rgba(59, 59, 59, 0.548));
+}
 /*---------------------------------------------------COMPTE------------------------------------------------------ */
-.container-info{
+.container-info {
   width: 100%;
   margin-top: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.info{
+.info {
   color: white;
   padding: 20px;
   width: 500px;
@@ -294,15 +300,15 @@ cursor: pointer;
   background-color: #ed5564;
   margin-bottom: 40px;
 }
-.title-info{
+.title-info {
   text-align: center;
   margin-bottom: 50px;
 }
-.info>p{
-  margin-bottom:10px;
+.info > p {
+  margin-bottom: 10px;
   margin-left: 30px;
 }
-.title-team{
+.title-team {
   text-align: center;
   color: white;
   padding: 20px;
@@ -370,7 +376,7 @@ footer {
   left: 50%;
   text-transform: uppercase;
   color: white;
-  font-size: 64px;
+  font-size: 68px;
 }
 
 .spec {
@@ -396,7 +402,9 @@ footer {
   width: 70%;
   height: auto;
   right: 3%;
-  top: 30%;
+  top: 32%;
+  z-index: 11;
+  filter: drop-shadow(5px 5px 5px rgba(41, 41, 41, 0.658));
 }
 
 .type1,
@@ -426,6 +434,7 @@ footer {
 }
 
 .ff > span {
+  text-transform: capitalize;
   display: flex;
   flex-direction: row;
   width: max-content;
@@ -437,16 +446,19 @@ footer {
   font-size: 18px;
   color: white;
 }
-.ff > span > p:nth-child(2n+2) {
-  text-transform: uppercase;
+.ff > span > p:nth-child(2n + 2) {
 }
 
 .gold,
 .silver {
-  text-transform: uppercase;
   text-shadow: 1px 2px 2px black;
   filter: contrast(1.8);
-  -webkit-mask-image: linear-gradient(-75deg, rgba(0, 0, 0, 0.6) 30%, #000 50%, rgba(0, 0, 0, 0.6) 70%);
+  -webkit-mask-image: linear-gradient(
+    -75deg,
+    rgba(0, 0, 0, 0.6) 30%,
+    #000 50%,
+    rgba(0, 0, 0, 0.6) 70%
+  );
   -webkit-mask-size: 200%;
   animation: shiny 1.8s linear infinite;
 }
@@ -462,8 +474,6 @@ footer {
   cursor: pointer;
 }
 
-
-
 .id > p {
   color: white;
   transform: translate(-50%);
@@ -472,8 +482,6 @@ footer {
   font-size: 32px;
   top: 5%;
 }
-
-
 
 .gold {
   color: rgb(255, 170, 0);
@@ -511,10 +519,9 @@ footer {
   display: none;
 }
 
-
-@media (max-width:768px) {
-
-  .welcome, .logo{
+@media (max-width: 768px) {
+  .welcome,
+  .logo {
     margin: 0;
   }
 
@@ -526,7 +533,6 @@ footer {
     gap: 4px;
     margin-top: 36px;
     z-index: 50;
-
   }
 
   .haut {
@@ -579,9 +585,8 @@ footer {
   }
 
   .active-nav {
-    display: flex !important
+    display: flex !important;
   }
-
 
   .navigation {
     display: none;
@@ -605,7 +610,6 @@ footer {
 
   .titre-lien {
     height: fit-content;
-
   }
 
   .titre,
@@ -628,7 +632,6 @@ footer {
   .containerInput {
     position: fixed;
     z-index: 0;
-
   }
 
   .input-search {
@@ -636,65 +639,59 @@ footer {
   }
 
   .imgPokeModal {
-    top: 30%;
+    top: 32%;
     right: 1%;
   }
-
-
 }
 
-@media (max-width:425px) {
+@media (max-width: 425px) {
+  .card {
+    width: 120px;
+    border-width: 3px;
+  }
 
-	.card {
-		width: 120px;
-		border-width: 3px;
-	}
+  .nom,
+  .idpoke {
+    font-size: 12px;
+  }
 
-	.nom,
-	.idpoke {
-		font-size: 12px;
-	}
+  .container-pokeball {
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: -105px;
+    margin-left: -150px;
+  }
 
-	.container-pokeball {
-		width: fit-content;
-		height: fit-content;
-		margin-bottom: -105px;
-		margin-left: -150px;
-	}
+  .pika {
+    width: 150px;
+    transform: scaleX(-1);
+    margin-bottom: -4px;
+    margin-right: -170px;
+  }
 
-	.pika {
-		width: 150px;
-		transform: scaleX(-1);
-		margin-bottom: -4px;
-		margin-right: -170px;
-	}
+  .modal {
+    width: 95%;
+    height: 70%;
+  }
 
-	.modal {
-		width: 95%;
-		height: 70%;
-	}
+  span > p,
+  .ff {
+    font-size: 14px;
+    line-height: 1.2em;
+  }
 
-	span>p,
-	.ff {
-		font-size: 14px;
-		line-height: 1.2em;
-
-	}
-
-	.id>P {
-		font-size: 20px;
-	}
-  .name{
+  .id > P {
+    font-size: 20px;
+  }
+  .name {
     font-size: 16px;
   }
 }
 
-@media (max-width:380px) {
-
+@media (max-width: 380px) {
   .main-index {
     margin-top: 150px;
   }
-
 
   main {
     margin-top: 40vh;
@@ -727,11 +724,9 @@ footer {
   .modal {
     height: 80%;
   }
-
 }
 
-@media (max-width:320px) {
-
+@media (max-width: 320px) {
   .main-index {
     margin-top: 150px;
   }
@@ -769,11 +764,10 @@ footer {
     top: 12%;
   }
 
-  span>p,
+  span > p,
   .ff {
     font-size: 13px;
     line-height: 1.2em;
-
   }
 
   .modal {

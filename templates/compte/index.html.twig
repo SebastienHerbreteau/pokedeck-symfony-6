@@ -2,7 +2,6 @@
 {% block title %}{% endblock %}
 {% block body %}
 	<div class="modal"></div>
-
 	{% if app.user %}
 		<div class="container-info">
 			<div class="info">
@@ -18,28 +17,35 @@
 	{% endif %}
 
 	<h1 class="title-team">Mon équipe Pokémon</h1>
-	<div class="container-cards-compte">
-	<!-- Pour chaque pokemon contenu dans Pokemons -->
+	<div
+		class="container-cards-compte">
+		<!-- Pour chaque pokemon contenu dans Pokemons -->
 		{% for pokemon in pokemons %}
-	<!-- Si l'utilisateur est connecté -->
+			<!-- Si l'utilisateur est connecté -->
 			{% if app.user %}
-	<!-- Pour chaque pokemon en lien avec la table favoris -->			
+				<!-- Pour chaque pokemon en lien avec la table favoris -->
 				{% for favoris in pokemon.favoris %}
-	<!-- Si l'ID de l'utilisateur est contenu dans le favoris -->	
+					<!-- Si l'ID de l'utilisateur est contenu dans le favoris -->
 					{% if app.user.id == favoris.id %}
-	<!-- On affiche les résultats-->				
+						<!-- On affiche les résultats-->
 						<div class="card" style="background-image: url('{{pokemon.background}}')">
 							<p class="idpoke">{{pokemon.id}}</p>
-							<img class="imgPoke" data-id="{{pokemon.id}}"src="{{pokemon.imgPokemon}}" alt="image de {{pokemon.name}}">
+							<img class="imgPoke" data-id="{{pokemon.id}}" src="{{pokemon.imgPokemon}}" alt="image de {{pokemon.name}}">
+							<div class="container-type">
+								{% if pokemon.imgType2 != "NULL" %}
+									<img class="type-one" src="{{pokemon.imgType2}}" alt="image de {{pokemon.name}}">
+								{% endif %}
+								<img class="type-two" src="{{pokemon.imgType1}}" alt="image de {{pokemon.name}}">
+
+							</div>
 							<h2 class="name">{{pokemon.name}}</h2>
 							<a href="{{ path('remove_favoris_from_account', {id: pokemon.id})}}">
 								<img class="star" data-fav="1" data-id="{{pokemon.id}}" src="{{ asset('assets/img/other/yellow-star.png') }}" alt="pictogramme d'une étoile jaune">
 							</a>
 						</div>
 					{% endif %}
-				{% endfor %}	
+				{% endfor %}
 			{% endif %}
 		{% endfor %}
 	</div>
 {% endblock %}
-
