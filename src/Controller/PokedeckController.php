@@ -15,22 +15,22 @@ class PokedeckController extends AbstractController
     #[Route('/pokedeck', name: 'pokedeck')]
     public function index(PokemonRepository $pokemons): Response
     {
-        return $this->render('pokedeck/index.html.twig', [
-            'pokemons' => $pokemons->findAll()
-        ]);
+      return $this->render('pokedeck/index.html.twig', [
+          'pokemons' => $pokemons->findBy([],[], 50)
+      ]);
     }
-
+    
     #[Route('pokedeck/{id}', name: 'pokemon')]
-    public function pokemon(Pokemon $pokemon)
+    public function pokemon(Pokemon $pokemon): Response
     {
-        $json = json_encode($pokemon);
-        $response = new Response($json);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+      $json = json_encode($pokemon);
+      $response = new Response($json);
+      $response->headers->set('Content-Type', 'application/json');
+      return $response;
     }
 
     #[Route('pokedeck/favoris/add/{id}', name: 'add_favoris')]
-    public function addFavoris(Pokemon $pokemon, EntityManagerInterface $entityManager)
+    public function addFavoris(Pokemon $pokemon, EntityManagerInterface $entityManager): Response
     {
       $pokemon->addFavori($this->getUser());
       $entityManager->persist($pokemon);
@@ -44,7 +44,7 @@ class PokedeckController extends AbstractController
     }
 
     #[Route('pokedeck/favoris/remove/{id}', name: 'remove_favoris')]
-    public function removeFavoris(Pokemon $pokemon, EntityManagerInterface $entityManager)
+    public function removeFavoris(Pokemon $pokemon, EntityManagerInterface $entityManager): Response
     {
       $pokemon->removeFavori($this->getUser());
       $entityManager->persist($pokemon);
@@ -58,7 +58,7 @@ class PokedeckController extends AbstractController
     }
 
     #[Route('pokedeck/compte/favoris/remove/{id}', name: 'remove_favoris_from_account')]
-    public function removeFavorisAccount(Pokemon $pokemon, EntityManagerInterface $entityManager)
+    public function removeFavorisAccount(Pokemon $pokemon, EntityManagerInterface $entityManager): Response
     {
       $pokemon->removeFavori($this->getUser());
       $entityManager->persist($pokemon);

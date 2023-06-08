@@ -3,6 +3,7 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+
 	<div class="modal"></div>
 	<div class="container-cards">
 		{% for pokemon in pokemons %}
@@ -38,5 +39,7 @@
 				<h2 class="name">{{pokemon.name}}</h2>
 			</div>
 		{% endfor %}
+		<div id="infinite-scroll-container"></div>
+
 	</div>
 {% endblock %}
