@@ -16,7 +16,7 @@
 						<a class="nav-link" href="{{ path('main')}}">Accueil</a>
 					</li>
 					<li>
-						<a class="nav-link" href="{{ path('pokedeck')}}">Pokedeck</a>
+						<a class="nav-link" href="{{ path('pokemons')}}">Pokemons</a>
 					</li>
 					{% if app.user %}
 						<li>
@@ -44,12 +44,12 @@
 		</ul>
 
 	</nav>
-	{% if app.user and app.user.isVerified == false %}
+	{# {% if app.user and app.user.isVerified == false %}
 		<div class="alert" role="alert"></div>
 		<div class="alert-message">
 			<img class="alert-icone" src="{{asset ('assets/img/other/warning.png')}}" alt="">
 			<strong>Votre compte n'est pas activé</strong>
 		</div>
-	{% endif %}
+	{% endif %} #}
 	<div class="modal-alert">
 		<div></header>

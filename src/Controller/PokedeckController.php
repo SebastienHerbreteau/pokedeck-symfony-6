@@ -6,21 +6,29 @@ use App\Entity\Pokemon;
 use App\Repository\PokemonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 
 class PokedeckController extends AbstractController
 {
-    #[Route('/pokedeck', name: 'pokedeck')]
-    public function index(PokemonRepository $pokemons): Response
+    #[Route('/pokemons', name: 'pokemons')]
+    public function index(PokemonRepository $pokemons, Request $request, PaginatorInterface $paginator): Response
     {
-      return $this->render('pokedeck/index.html.twig', [
-          'pokemons' => $pokemons->findBy([],[], 50)
+      $pagination = $paginator->paginate(
+        $pokemons->paginationQuery(),
+        $request->query->get('page',1),
+        50
+      );
+      return $this->render('pokemons/index.html.twig', [
+          
+          'pagination' => $pagination
       ]);
     }
     
-    #[Route('pokedeck/{id}', name: 'pokemon')]
+    #[Route('pokemons/{id}', name: 'pokemon')]
     public function pokemon(Pokemon $pokemon): Response
     {
       $json = json_encode($pokemon);
@@ -29,7 +37,7 @@ class PokedeckController extends AbstractController
       return $response;
     }
 
-    #[Route('pokedeck/favoris/add/{id}', name: 'add_favoris')]
+    #[Route('pokemons/favoris/add/{id}', name: 'add_favoris')]
     public function addFavoris(Pokemon $pokemon, EntityManagerInterface $entityManager): Response
     {
       $pokemon->addFavori($this->getUser());
@@ -43,7 +51,7 @@ class PokedeckController extends AbstractController
       return $response;
     }
 
-    #[Route('pokedeck/favoris/remove/{id}', name: 'remove_favoris')]
+    #[Route('pokemons/favoris/remove/{id}', name: 'remove_favoris')]
     public function removeFavoris(Pokemon $pokemon, EntityManagerInterface $entityManager): Response
     {
       $pokemon->removeFavori($this->getUser());
@@ -57,7 +65,7 @@ class PokedeckController extends AbstractController
       return $response;
     }
 
-    #[Route('pokedeck/compte/favoris/remove/{id}', name: 'remove_favoris_from_account')]
+    #[Route('pokemons/compte/favoris/remove/{id}', name: 'remove_favoris_from_account')]
     public function removeFavorisAccount(Pokemon $pokemon, EntityManagerInterface $entityManager): Response
     {
       $pokemon->removeFavori($this->getUser());

@@ -39,8 +39,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
-    #[ORM\Column(type: 'boolean')]
-    private $is_verified = false;
+    // #[ORM\Column(type: 'boolean')]
+    // private $is_verified = false;
 
     #[ORM\ManyToMany(targetEntity: Pokemon::class, mappedBy: 'favoris')]
     private Collection $favoris;
@@ -145,14 +145,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getIsVerified(): ?bool
-    {
-        return $this->is_verified;
-    }
+    // public function getIsVerified(): ?bool
+    // {
+    //     return $this->is_verified;
+    // }
 
-    public function setIsVerified(bool $is_verified): self
-    {
-        $this->is_verified = $is_verified;
-        return $this;
-    }
+    // public function setIsVerified(bool $is_verified): self
+    // {
+    //     $this->is_verified = $is_verified;
+    //     return $this;
+    // }
 }

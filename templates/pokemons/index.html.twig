@@ -6,7 +6,7 @@
 
 	<div class="modal"></div>
 	<div class="container-cards">
-		{% for pokemon in pokemons %}
+		{% for pokemon in pagination %}
 			<!-- Pour chaque pokémon-->
 			<div class="card" style="background-image: url('{{pokemon.background}}')">
 				<p class="idpoke">{{pokemon.id}}</p>
@@ -39,7 +39,8 @@
 				<h2 class="name">{{pokemon.name}}</h2>
 			</div>
 		{% endfor %}
-		<div id="infinite-scroll-container"></div>
-
+		
+{{ knp_pagination_render(pagination) }}
 	</div>
+	
 {% endblock %}

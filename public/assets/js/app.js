@@ -1,5 +1,5 @@
 function getPokemon(id) {
-  fetch(`pokedeck/${id}`)
+  fetch(`pokemons/${id}`)
     .then((response) => response.json())
     .then((pokemon) => {
 
@@ -171,41 +171,41 @@ burger.addEventListener("click", () => {
 
 //---------------------------------------------ALERT MESSAGE---------------------------------------------------------------------
 
-let alertMessage = document.querySelector(".alert-message");
-var modalAlert = document.querySelector(".modal-alert");
+// let alertMessage = document.querySelector(".alert-message");
+// var modalAlert = document.querySelector(".modal-alert");
 
-alertMessage.addEventListener("mouseover", ()=>{
-  alertMessage.style.right = '0px'
-})
+// alertMessage.addEventListener("mouseover", ()=>{
+//   alertMessage.style.right = '0px'
+// })
 
-alertMessage.addEventListener("mouseleave", ()=>{
-  alertMessage.style.right = '-140px'
-})
+// alertMessage.addEventListener("mouseleave", ()=>{
+//   alertMessage.style.right = '-140px'
+// })
 
 //---------------------------------------------MODAL ALERT---------------------------------------------------------------------
 
-alertMessage.addEventListener("click",()=>{
+// alertMessage.addEventListener("click",()=>{
   
-  modalAlert.innerHTML=`<div class="advisor-activation">
-  <img id="close-alert-advisor" src="assets/img/other/close.webp" alt="fermer">
-  Votre compte n'est pas actif.<br><br> Un mail contenant un lien d'activation vous a été envoyé lors de votre inscription.
-  Si vous ne l'avez pas reçu, faites une nouvelle demande en cliquant sur ce lien.
-  <br><br><br>
-  <p id="activation-link">Renvoyer le mail d'activation</p>
-  <div>
-  `
-  modalAlert.classList.add("modalActive");
-})
+//   modalAlert.innerHTML=`<div class="advisor-activation">
+//   <img id="close-alert-advisor" src="assets/img/other/close.webp" alt="fermer">
+//   Votre compte n'est pas actif.<br><br> Un mail contenant un lien d'activation vous a été envoyé lors de votre inscription.
+//   Si vous ne l'avez pas reçu, faites une nouvelle demande en cliquant sur ce lien.
+//   <br><br><br>
+//   <p id="activation-link">Renvoyer le mail d'activation</p>
+//   <div>
+//   `
+//   modalAlert.classList.add("modalActive");
+// })
 
-window.onclick = function (e) {
-  if (e.target.id === "close-alert-advisor") {
-    modalAlert.innerHTML = "";
-    modalAlert.classList.remove("modalActive");
-  }
-  if (e.target.id === "activation-link") {
-    modalAlert.innerHTML = `<img id="close-alert-advisor" src="assets/img/other/close.webp" alt="fermer">Un mail contenant un nouveau lien d'activation vient de vous être envoyé`;
-  }
-};
+// window.onclick = function (e) {
+//   if (e.target.id === "close-alert-advisor") {
+//     modalAlert.innerHTML = "";
+//     modalAlert.classList.remove("modalActive");
+//   }
+//   if (e.target.id === "activation-link") {
+//     modalAlert.innerHTML = `<img id="close-alert-advisor" src="assets/img/other/close.webp" alt="fermer">Un mail contenant un nouveau lien d'activation vient de vous être envoyé`;
+//   }
+// };
 
 
 //-----------------------------AJOUT FAVORIS------------------------------------------------------------------------------------
@@ -217,12 +217,12 @@ stars.forEach(star => {
     const id = event.currentTarget.dataset.id; // Récupérer l'ID du Pokémon depuis l'attribut data-id de la classe "star"
     const fav = event.currentTarget.dataset.fav; // Récupérer 1 sur favoris, 0 si non depuis l'attribut data-fav de la classe "star"
     if (fav === "0") {
-      const url = `pokedeck/favoris/add/${id}`; // URL de la route Symfony
+      const url = `pokemons/favoris/add/${id}`; // URL de la route Symfony
       gererFav(url, "POST");
       star.src = "/assets/img/other/yellow-star.png";
       event.currentTarget.dataset.fav = "1";
     } else{
-      const url = `pokedeck/favoris/remove/${id}`; // URL de la route Symfony
+      const url = `pokemons/favoris/remove/${id}`; // URL de la route Symfony
       gererFav(url, "DELETE");
       star.src = "/assets/img/other/star.png";
       event.currentTarget.dataset.fav = "0";
@@ -261,7 +261,7 @@ stars.forEach(star => {
 //   const container = document.querySelector('.container-cards');
 // let offset = 50; // Ou la valeur initiale pour le décalage
 // let limit = 50; 
-// let url = `/pokedeck/${offset}&${limit}`;
+// let url = `/pokemons/${offset}&${limit}`;
 
 // window.addEventListener('scroll', function() {
 //     const scrollPosition = window.pageYOffset;
