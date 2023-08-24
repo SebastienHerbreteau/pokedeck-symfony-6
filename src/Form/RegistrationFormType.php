@@ -49,7 +49,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Vous devez accepter les conditions.',
                     ]),
                 ],
-                'label' => 'En m\' inscrivant j\'accepte que mes données soient récupérées par la Team Rocket et ainsi leur permettre le contrôle total du monde !'
+                'label' => "En m\' inscrivant j\'accepte que mes données soient récupérées par la Team Rocket et ainsi leur permettre le contrôle total du monde !"
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,

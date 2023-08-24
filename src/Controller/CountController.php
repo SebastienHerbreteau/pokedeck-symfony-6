@@ -13,7 +13,7 @@ class CountController extends AbstractController
     #[Route('/compte', name: 'app_compte')]
     public function index(PokemonRepository $pokemons): Response
     {
-       
+
         return $this->render('compte/index.html.twig', [
             'pokemons' => $pokemons->findAll()
         ]);
