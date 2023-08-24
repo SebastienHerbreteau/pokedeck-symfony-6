@@ -27,10 +27,7 @@ body {
 .date{
   font-weight: bold;
 }
-.containerMaj{
-  display: flex;
-  flex-direction: column;
-}
+
 /* --------------------------------------------------HEADER------------------------------------------------------ */
 
 header {
