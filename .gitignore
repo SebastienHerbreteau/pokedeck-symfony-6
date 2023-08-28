@@ -9,6 +9,7 @@
 /public/htaccess
 /var/
 /vendor/
+/.idea
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
