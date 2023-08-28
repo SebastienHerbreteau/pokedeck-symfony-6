@@ -73,4 +73,10 @@ class PokedeckController extends AbstractController
       $entityManager->flush();
       return $this->redirectToRoute('app_compte');
     }
+
+    #[Route('/recherche', name: 'search')]
+    public function search(): response
+    {
+      return $this->render('search/index.html.twig');
+    }
 }

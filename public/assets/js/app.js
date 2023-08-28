@@ -1,5 +1,5 @@
 function getPokemon(id) {
-  fetch(`pokemons/${id}`)
+  fetch(`pokemons/${id}`, )
     .then((response) => response.json())
     .then((pokemon) => {
 
@@ -7,7 +7,7 @@ function getPokemon(id) {
 
       modal.innerHTML = `
     <img id="close" src="assets/img/other/close.webp" alt="fermer">
-    <img class="star" style="width:40px;left:30px;top:5%" src="assets/img/other/star.png" alt="pictogramme d'une étoile">
+    
   
         <div class="typeModal">${type(pokemon)}</div>
 
