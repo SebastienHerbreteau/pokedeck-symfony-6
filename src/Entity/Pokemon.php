@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PokemonRepository::class)]
+#[ORM\Index(columns: ['name', 'type1', 'type2'], name: 'recherche', flags: ['fulltext'])]
 
 
 class Pokemon

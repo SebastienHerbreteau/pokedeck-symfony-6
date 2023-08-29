@@ -13,6 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Pokemon|null findOneBy(array $criteria, array $orderBy = null)
  * @method Pokemon[]    findAll()
  * @method Pokemon[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
  */
 class PokemonRepository extends ServiceEntityRepository
 {
@@ -38,24 +39,23 @@ class PokemonRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    
 
 
-   public function paginationQuery()
-   {
-       return $this->createQueryBuilder('p')
-        ->orderBy('p.id', 'ASC')
-        ->getQuery()
-       ;
-   }
+    public function paginationQuery()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'ASC')
+            ->getQuery();
+    }
 
-//    public function findOneBySomeField($value): ?Pokemon
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function search($words)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('MATCH_AGAINST (p.name, p.type1, p.type2) AGAINST (:words) > 0')
+            ->setParameter('words', '%' . $words . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
+
 }

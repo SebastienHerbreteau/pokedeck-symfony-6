@@ -1,3 +1,5 @@
+
+
 function getPokemon(id) {
   fetch(`pokemons/${id}`, )
     .then((response) => response.json())
@@ -256,36 +258,6 @@ stars.forEach(star => {
   });
     } 
 
-  //------------------------------------PAGINATION JS------------------------------------------------//
-
-//   const container = document.querySelector('.container-cards');
-// let offset = 50; // Ou la valeur initiale pour le décalage
-// let limit = 50; 
-// let url = `/pokemons/${offset}&${limit}`;
-
-// window.addEventListener('scroll', function() {
-//     const scrollPosition = window.pageYOffset;
-//     const windowSize = window.innerHeight;
-//     const documentHeight = document.documentElement.offsetHeight;
-
-//     if (scrollPosition + windowSize >= documentHeight) {
-//         // Requête AJAX pour récupérer les nouveaux pokémons
-//         // Utilisez l'offset pour récupérer les résultats suivants
-//         fetch(url)
-//             .then(response => response.json())
-//             .then(pokemons => {
-//                 // Ajoutez les nouveaux pokémons à la section de l'infinite scroll
-//                 pokemons.forEach(pokemon => {
-//                   console.log(pokemon)
-//                     const div = document.createElement('div');
-//                     div.classList.add("card");
-//                     div.innerHTML = `<img src="${pokemon.imgType1}"></img>`;
-//                     container.appendChild(div);
-//                 });
-
-//                 offset += pokemons.length; // Mettez à jour le décalage pour la prochaine requête
-//             });
-//     }
-// });
+  //------------------------------------RECHERCHE------------------------------------------------//
 
 

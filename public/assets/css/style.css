@@ -149,6 +149,47 @@ ul {
   text-decoration: underline;
   cursor: pointer;
 }
+/* --------------------------------------------------RECHERCHE------------------------------------------------------ */
+
+.container-search{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+form[name="search_pokemon"]{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#search_pokemon :nth-child(1), #search_pokemon :nth-child(2){
+  display: flex;
+  justify-content: center;
+}
+
+#search_pokemon_words{
+  width: 20%;
+  height: 43px;
+  text-align: center;
+  color: #7191d6;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+#search_pokemon_Rechercher{
+  padding: 10px;
+  background-color: #7191d6;
+  border-radius: 10px;
+  font-family: "Denk One", sans-serif;
+  letter-spacing: 0.1em;
+  color: white;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+
+}
 /* --------------------------------------------------CONNEXION------------------------------------------------------ */
 
 .connection-form {

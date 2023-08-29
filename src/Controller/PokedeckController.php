@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Pokemon;
+use App\Form\SearchPokemonType;
 use App\Repository\PokemonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,66 +18,90 @@ class PokedeckController extends AbstractController
     #[Route('/pokemons', name: 'pokemons')]
     public function index(PokemonRepository $pokemons, Request $request, PaginatorInterface $paginator): Response
     {
-      $pagination = $paginator->paginate(
-        $pokemons->paginationQuery(),
-        $request->query->get('page',1),
-        50
-      );
-      return $this->render('pokemons/index.html.twig', [
-          
-          'pagination' => $pagination
-      ]);
+        $pagination = $paginator->paginate(
+            $pokemons->paginationQuery(),
+            $request->query->get('page', 1),
+            50
+        );
+
+        $form = $this->createForm(SearchPokemonType::class);
+        $search = $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $pokemons = $pokemons->search($search->get('words')
+                ->getData());
+            return $this->render('pokemons/index.html.twig', [
+                    'pokemons' => $pokemons,
+                    'form' => $form->createView()
+                ]
+            );
+        } else {
+            $pokemons = 0;
+            return $this->render('pokemons/index.html.twig', [
+                'pokemons' => $pokemons,
+                'pagination' => $pagination,
+                'form' => $form->createView()
+            ]);
+        }
     }
-    
+
     #[Route('pokemons/{id}', name: 'pokemon')]
     public function pokemon(Pokemon $pokemon): Response
     {
-      $json = json_encode($pokemon);
-      $response = new Response($json);
-      $response->headers->set('Content-Type', 'application/json');
-      return $response;
+        $json = json_encode($pokemon);
+        $response = new Response($json);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
+
 
     #[Route('pokemons/favoris/add/{id}', name: 'add_favoris')]
     public function addFavoris(Pokemon $pokemon, EntityManagerInterface $entityManager): Response
     {
-      $pokemon->addFavori($this->getUser());
-      $entityManager->persist($pokemon);
-      $entityManager->flush();
-      
-      $message = "ok";
-      $json = json_encode($message);
-      $response = new Response($json);
-      $response->headers->set('Content-Type', 'application/json');
-      return $response;
+        $pokemon->addFavori($this->getUser());
+        $entityManager->persist($pokemon);
+        $entityManager->flush();
+
+        $message = "ok";
+        $json = json_encode($message);
+        $response = new Response($json);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     #[Route('pokemons/favoris/remove/{id}', name: 'remove_favoris')]
     public function removeFavoris(Pokemon $pokemon, EntityManagerInterface $entityManager): Response
     {
-      $pokemon->removeFavori($this->getUser());
-      $entityManager->persist($pokemon);
-      $entityManager->flush();
-   
-      $message = "ok";
-      $json = json_encode($message);
-      $response = new Response($json);
-      $response->headers->set('Content-Type', 'application/json');
-      return $response;
+        $pokemon->removeFavori($this->getUser());
+        $entityManager->persist($pokemon);
+        $entityManager->flush();
+
+        $message = "ok";
+        $json = json_encode($message);
+        $response = new Response($json);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     #[Route('pokemons/compte/favoris/remove/{id}', name: 'remove_favoris_from_account')]
     public function removeFavorisAccount(Pokemon $pokemon, EntityManagerInterface $entityManager): Response
     {
-      $pokemon->removeFavori($this->getUser());
-      $entityManager->persist($pokemon);
-      $entityManager->flush();
-      return $this->redirectToRoute('app_compte');
+        $pokemon->removeFavori($this->getUser());
+        $entityManager->persist($pokemon);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_compte');
     }
 
     #[Route('/recherche', name: 'search')]
-    public function search(): response
+    public function search(Request $request, PokemonRepository $pokemon): response
     {
-      return $this->render('search/index.html.twig');
+
+
+        return $this->render('search/index.html.twig', [
+            'pokemon' => $pokemon,
+
+        ]);
     }
+
+
 }
