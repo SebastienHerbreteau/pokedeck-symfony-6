@@ -51,7 +51,7 @@ class PokemonRepository extends ServiceEntityRepository
     public function search($words)
     {
         return $this->createQueryBuilder('p')
-            ->where('MATCH_AGAINST (p.name, p.type1, p.type2) AGAINST (:words) > 0')
+            ->where('p.name LIKE :words OR p.type1 LIKE :words OR p.type2 LIKE :words')
             ->setParameter('words', '%' . $words . '%')
             ->getQuery()
             ->getResult();

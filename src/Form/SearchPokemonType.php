@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\Pokemon;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,7 +19,7 @@ class SearchPokemonType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Entrez plusieurs noms ou types',
+                    'placeholder' => '',
                 ]
             ])
             ->add('Rechercher', SubmitType::class);
