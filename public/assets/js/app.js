@@ -1,9 +1,9 @@
 
 
 function getPokemon(id) {
-  fetch(`pokemons/${id}`, )
-    .then((response) => response.json())
-    .then((pokemon) => {
+  axios.get(`pokemons/${id}`, )
+    .then((response) =>  {
+      const pokemon = response.data;
 
       let modal = document.querySelector(".modal");
 
@@ -24,7 +24,7 @@ function getPokemon(id) {
                     <div class="vulnerable ff">${vulnerable(pokemon)}</div>
                     <div class="tresVulnerable ff">${tresVulnerable(
                       pokemon
-                    )}</div>
+                    )}</div> 
             </div>
     <div class="section1">
               <div class="ff">HP : ${pokemon.hp}</div>
@@ -43,7 +43,10 @@ function getPokemon(id) {
        
     </div>
     `;
-    });
+    })
+      .catch((error) =>{
+
+      })
 }
 
 //-----------------------------------------------COMPORTEMENT MODAL AU CLICK SUR LES CARDS------------------------------------//
